@@ -9,6 +9,7 @@ userpass = 'adminPass'
 errortext = 'Неправильное имя пользователя или пароль.'
 
 
+#Авторизация существующего пользователя ПУ с неправильным паролем
 def test_login_wrongPass(driver):
     page = BasePage(driver, CPurl)
     page.open()
