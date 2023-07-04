@@ -17,6 +17,7 @@ def test_login_wrongPass(driver):
     auth_form.login(email, wronguserpass)
     assert errortext == auth_form.error_message(), "Wrong error text"
 
+#Авторизация НЕсуществующего пользователя ПУ с правильным паролем
 def test_login_wrongMail(driver):
     page = BasePage(driver, CPurl)
     page.open()
