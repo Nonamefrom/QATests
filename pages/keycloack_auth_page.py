@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -15,11 +16,13 @@ class keycloack_auth_form(BasePage):
     def __init__(self, driver, url):
         super().__init__(driver, url)
 
+    @allure.step("Ввод текста в поля и нажатие кнопки авторизоваться")
     def login(self, email, password):
         self.fill_text(self.NAME_BAR, email)
         self.fill_text(self.PASSWORD_BAR, password)
         self.click(self.SUBMIT_BUTTON)
 
+    @allure.step("Получение текста сообщения валидации при неверных CRUD")
     def error_message(self):
         wait = WebDriverWait(self.driver, 10)
         phrase = wait.until(EC.visibility_of_element_located(self.ERROR_MESSAGE)).text
