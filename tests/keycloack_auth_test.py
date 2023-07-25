@@ -37,3 +37,7 @@ def test_login_correctUser(driver):
     auth_form = keycloack_auth_form(driver, url=CPurl)
     auth_form.login(email, userpass)
     assert 'Панель управления' == driver.title, "Wrong title of page, or wrong page was loaded"
+    top_bar = top(driver)
+    top_bar.click_openProfileDropdown()
+    top_bar.click_deauthButton()
+    check_title('Авторизация в internal')
