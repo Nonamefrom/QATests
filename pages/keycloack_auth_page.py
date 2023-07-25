@@ -27,3 +27,7 @@ class keycloack_auth_form(BasePage):
         wait = WebDriverWait(self.driver, 10)
         phrase = wait.until(EC.visibility_of_element_located(self.ERROR_MESSAGE)).text
         return phrase
+
+    @allure.step("Получение текста title страницы")
+    def is_title_correct(self, expected_title):
+        return expected_title == self.driver.title
