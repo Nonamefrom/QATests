@@ -3,3 +3,5 @@ selenium~=4.10.0
 webdriver-manager~=3.8.6
 pytest-xdist
 allure-pytest~=2.13.2
+requests
+flask

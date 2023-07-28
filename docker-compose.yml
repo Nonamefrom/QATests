@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  e2e-allure:
+    image: frankescobar/allure-docker-service
+    restart: unless-stopped
+    volumes:
+      - "./allure-results:/app/allure-results"
+    ports:
+      - "5050:5050"
+    environment:
+      CHECK_RESULTS_EVERY_SECONDS: 10
+      KEEP_HISTORY: 1
+
+  tests:
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    # Добавьте необходимые тома для монтирования папок с тестами и результатами Allure
+    volumes:
+      - "./tests:/var/www/tests"
+      - "./allure-results:/var/www/allure-results"

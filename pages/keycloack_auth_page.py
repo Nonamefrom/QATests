@@ -5,7 +5,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from pages.base_page import BasePage
 
 
-class keycloack_auth_form(BasePage):
+class KeycloackAuthForm(BasePage):
     NAME_BAR = (By.XPATH, '//input[@name="username"]')
     PASSWORD_BAR = (By.XPATH, '//input[@name="password"]')
     SUBMIT_BUTTON = (By.XPATH, '//button[@value="Submit"]')
