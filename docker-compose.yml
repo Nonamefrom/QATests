@@ -1,16 +1,7 @@
-version: "3.7"
-
+version: '3'
 services:
-  e2e-allure:
-    image: frankescobar/allure-docker-service
-    restart: unless-stopped
-    volumes:
-      - "./allure-results:/app/allure-results"
-    ports:
-      - "5050:5050"
-    environment:
-      CHECK_RESULTS_EVERY_SECONDS: 10
-      KEEP_HISTORY: 1
+  chrome:
+    image: selenium/node-chrome:112.0-chromedriver-112.0
 
   tests:
     logging:
@@ -18,7 +9,19 @@ services:
       options:
         max-size: "10m"
         max-file: "3"
-    # Добавьте необходимые тома для монтирования папок с тестами и результатами Allure
+    build: .
+    depends_on:
+      - chrome
     volumes:
       - "./tests:/var/www/tests"
-      - "./allure-results:/var/www/allure-results"
+  allure:
+    image: frankescobar/allure-docker-service
+    ports:
+      - "4040:4040"
+    volumes:
+      - allure-results:/app/allure-results
+      - allure-report:/app/allure-report
+
+volumes:
+  allure-results:
+  allure-report:
